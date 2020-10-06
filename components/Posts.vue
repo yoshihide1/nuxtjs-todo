@@ -7,9 +7,6 @@
       placeholder="memo"
     />
     <p><button @click="postMemo">メモする</button></p>
-    <div v-for="(m, index) in messages" :key="index">
-      <p>{{ m }}</p>
-    </div>
   </div>
 </template>
 
@@ -18,7 +15,6 @@ export default {
   data() {
     return {
       message: '',
-      messages: [],
     }
   },
   methods: {
@@ -26,7 +22,7 @@ export default {
       if (!this.message) {
         return alert('入力してください')
       }
-      this.messages.push(this.message)
+      this.$store.commit('messageBox', this.message)
       this.message = ''
     },
   },
