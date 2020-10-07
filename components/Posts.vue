@@ -1,8 +1,8 @@
 <template>
   <div id="memo">
     <input
-      class="memo__form"
       v-model="message"
+      class="memo__form"
       type="text"
       placeholder="memo"
     />
