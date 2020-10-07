@@ -22,7 +22,7 @@ export default {
       if (!this.message) {
         return alert('入力してください')
       }
-      this.$store.commit('messageBox', this.message)
+      this.$store.dispatch('postMessage', this.message)
       this.message = ''
     },
   },

@@ -6,12 +6,8 @@ export const state = () => ({
 })
 
 export const mutations = {
-  messageBox(state, memo) {
-    const postData = {
-      message: memo,
-      date: getters.fetchDate(),
-    }
-    state.messages.push(postData)
+  messageBox(state, messageData) {
+    state.messages.push(messageData)
   },
 }
 

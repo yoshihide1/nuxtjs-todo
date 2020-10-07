@@ -1,8 +1,11 @@
 <template>
   <div id="memo">
     <div v-for="(m, index) in messages" :key="index" class="memos">
-      <p>{{ lengthCheck(m.message) }}</p>
-      <small>作成日{{ m.date }}</small>
+      <p v-show="!showMessage">
+        {{ lengthCheck(m.memo) }}
+      </p>
+      <p v-show="showMessage">{{ m.memo }}</p>
+      <small>{{ m.date }}</small>
     </div>
   </div>
 </template>
@@ -10,20 +13,30 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  data() {
+    return {
+      showMessage: false,
+    }
+  },
   computed: {
     ...mapState(['messages']),
   },
   methods: {
     lengthCheck(message) {
-      if (message.length >= 20) {
+      if (message.length >= 15) {
         return this.sliceMessage(message)
       } else {
         return message
       }
     },
+
     sliceMessage(message) {
-      const m = message.slice(0, 20)
+      const m = message.slice(0, 15)
       return `${m}...`
+    },
+
+    test() {
+      this.showMessage = !this.showMessage
     },
   },
 }

@@ -1,15 +1,18 @@
 export default {
   messages(state) {
-    console.log('message')
-    return 'hello'
+    return 'test'
   },
+
+  fetchId() {
+    const id =
+      new Date().getTime().toString(16) +
+      Math.floor(1000 * Math.random()).toString(16)
+    return id
+  },
+
   fetchDate() {
-    console.log('getter')
     const d = new Date()
-    const date = `${d.getFullYear()}年${d.getMonth() + 1}月
-    ${d.getDate()}日${d.getHours()}時${d.getMinutes()}分`
-    console.log(d)
-    console.log(date)
+    const date = `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
     return date
   },
 }
