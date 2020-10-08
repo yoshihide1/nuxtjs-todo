@@ -9,6 +9,11 @@ export const mutations = {
   messageBox(state, messageData) {
     state.messages.push(messageData)
   },
+
+  newMessageBox(state, messageData) {
+    state.messages = []
+    state.messages = messageData
+  },
 }
 
 export default {

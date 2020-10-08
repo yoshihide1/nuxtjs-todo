@@ -1,8 +1,10 @@
 <template>
   <div id="memo">
-    <div v-for="(m, index) in messages" :key="index" class="memos">
+    <div v-for="m in messages" :key="m.id" class="memos">
       <p @click="test(m.id)">{{ lengthCheck(m.memo) }}</p>
-      <p>{{ m.id }}</p>
+      <button @click="deleteMemo(m.id)">削除</button>
+      <!-- <p @click="test(m.id)">{{ clickMemo.memo }}</p> -->
+      <!-- <p>{{ m.id }}</p> -->
       <!-- <p @click="test(m.id)">{{ m.memo }}</p> -->
       <small>{{ m.date }}</small>
     </div>
@@ -15,6 +17,7 @@ export default {
   data() {
     return {
       showMessage: false,
+      clickMemo: '',
     }
   },
   computed: {
@@ -34,12 +37,14 @@ export default {
       return `${m}...`
     },
 
+    deleteMemo(memoId) {
+      const memoList = this.$store.getters.deleteMemo(memoId)
+      this.$store.commit('newMessageBox', memoList)
+    },
+
     test(memoId) {
-      console.log(memoId)
-      if (memoId === this.messages.id) {
-        console.log(2222222)
-        this.showMessage = !this.showMessage
-      }
+      this.clickMemo = this.$store.getters.getMemo(memoId)
+      alert(this.clickMemo.memo)
     },
   },
 }

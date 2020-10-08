@@ -15,4 +15,12 @@ export default {
     const date = `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
     return date
   },
+
+  getMemo: (state) => (memoId) => {
+    return state.messages.find((memo) => memo.id === memoId)
+  },
+
+  deleteMemo: (state) => (memoId) => {
+    return state.messages.filter((memo) => memo.id !== memoId)
+  },
 }
