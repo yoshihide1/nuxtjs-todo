@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <div class="title">Todo-List</div>
     <Posts />
     <Memos />
   </div>
@@ -20,5 +21,10 @@ export default {
 .container {
   margin: 0 auto;
   text-align: center;
+}
+.title {
+  font-size: 2rem;
+  border-bottom: 2px solid black;
+  margin-bottom: 1rem;
 }
 </style>

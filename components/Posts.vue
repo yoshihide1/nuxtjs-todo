@@ -1,12 +1,12 @@
 <template>
-  <div id="memo">
+  <div id="post">
     <input
       v-model="message"
       class="memo__form"
       type="text"
       placeholder="memo"
     />
-    <p><button @click="postMemo">メモする</button></p>
+    <button class="memo__button" @click="postMemo">メモ</button>
   </div>
 </template>
 
@@ -30,7 +30,21 @@ export default {
 </script>
 
 <style>
+#post {
+  width: 100%;
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  left: 0;
+  border: 1px solid green;
+}
 .memo__form {
-  border: 1px solid black;
+  width: 80%;
+}
+
+.memo__button {
+  width: 20%;
+  background-color: green;
+  color: white;
 }
 </style>

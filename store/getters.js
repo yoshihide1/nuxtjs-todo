@@ -12,7 +12,7 @@ export default {
 
   fetchDate() {
     const d = new Date()
-    const date = `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
+    const date = `${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}`
     return date
   },
 

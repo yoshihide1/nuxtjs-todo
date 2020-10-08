@@ -1,12 +1,17 @@
 <template>
   <div id="memo">
     <div v-for="m in messages" :key="m.id" class="memos">
-      <p @click="test(m.id)">{{ lengthCheck(m.memo) }}</p>
-      <button @click="deleteMemo(m.id)">削除</button>
-      <!-- <p @click="test(m.id)">{{ clickMemo.memo }}</p> -->
-      <!-- <p>{{ m.id }}</p> -->
-      <!-- <p @click="test(m.id)">{{ m.memo }}</p> -->
-      <small>{{ m.date }}</small>
+      <div class="memo__list">
+        <p class="check__box"><input type="checkbox" /></p>
+        <p>{{ lengthCheck(m.memo) }}</p>
+      </div>
+      <div>
+        <font-awesome-icon
+          :icon="['fas', 'trash-alt']"
+          @click="deleteMemo(m.id)"
+        />
+        <small>{{ m.date }}</small>
+      </div>
     </div>
   </div>
 </template>
@@ -18,6 +23,7 @@ export default {
     return {
       showMessage: false,
       clickMemo: '',
+      edit: false,
     }
   },
   computed: {
@@ -53,5 +59,11 @@ export default {
 .memos {
   display: flex;
   justify-content: space-between;
+}
+.memo__list {
+  display: flex;
+}
+.check__box {
+  margin-right: 0.2rem;
 }
 </style>
