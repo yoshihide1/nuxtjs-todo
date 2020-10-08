@@ -1,8 +1,4 @@
 export default {
-  messages(state) {
-    return 'test'
-  },
-
   fetchId() {
     const id =
       new Date().getTime().toString(16) +

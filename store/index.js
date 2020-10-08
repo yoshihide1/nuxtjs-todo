@@ -6,11 +6,11 @@ export const state = () => ({
 })
 
 export const mutations = {
-  messageBox(state, messageData) {
+  newMemo(state, messageData) {
     state.messages.push(messageData)
   },
 
-  newMessageBox(state, messageData) {
+  memoBox(state, messageData) {
     state.messages = []
     state.messages = messageData
   },

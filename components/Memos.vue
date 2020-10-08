@@ -26,9 +26,21 @@ export default {
       edit: false,
     }
   },
+
   computed: {
     ...mapState(['messages']),
   },
+  watch: {
+    messages() {
+      this.localData()
+    },
+  },
+  mounted() {
+    const jsonGet = localStorage.getItem('Memos')
+    const memoData = JSON.parse(jsonGet)
+    this.$store.commit('memoBox', memoData)
+  },
+
   methods: {
     lengthCheck(message) {
       if (message.length >= 15) {
@@ -45,7 +57,13 @@ export default {
 
     deleteMemo(memoId) {
       const memoList = this.$store.getters.deleteMemo(memoId)
-      this.$store.commit('newMessageBox', memoList)
+      this.$store.commit('memoBox', memoList)
+    },
+
+    localData() {
+      const jsonData = JSON.stringify(this.messages)
+      localStorage.clear()
+      localStorage.setItem('Memos', jsonData)
     },
 
     test(memoId) {

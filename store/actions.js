@@ -6,6 +6,6 @@ export default {
       memo: message,
       date: getters.fetchDate(),
     }
-    commit('messageBox', postData)
+    commit('newMemo', postData)
   },
 }
