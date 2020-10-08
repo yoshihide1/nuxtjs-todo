@@ -1,10 +1,11 @@
-import getters from './getters'
+import { myFunc } from '../plugins/myFunc'
 export default {
   postMessage({ commit }, message) {
     const postData = {
-      id: getters.fetchId(),
+      id: myFunc.fetchId(),
       memo: message,
-      date: getters.fetchDate(),
+      date: myFunc.fetchDate(),
+      isDone: false,
     }
     commit('newMemo', postData)
   },

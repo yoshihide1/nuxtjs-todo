@@ -2,8 +2,10 @@
   <div id="memo">
     <div v-for="m in messages" :key="m.id" class="memos">
       <div class="memo__list">
-        <p class="check__box"><input type="checkbox" /></p>
-        <p>{{ lengthCheck(m.memo) }}</p>
+        <p class="check__box">
+          <input type="checkbox" @change="doneMessage(m.id)" />
+        </p>
+        <p :class="{ done: m.isDone }">{{ lengthCheck(m.memo) }}</p>
       </div>
       <div>
         <font-awesome-icon
@@ -20,11 +22,7 @@
 import { mapState } from 'vuex'
 export default {
   data() {
-    return {
-      showMessage: false,
-      clickMemo: '',
-      edit: false,
-    }
+    return {}
   },
 
   computed: {
@@ -32,6 +30,7 @@ export default {
   },
   watch: {
     messages() {
+      console.log('watch:', 'messages')
       this.localData()
     },
   },
@@ -61,18 +60,20 @@ export default {
     },
 
     localData() {
-      const jsonData = JSON.stringify(this.messages)
+      const messages = this.messages.filter((v) => v)
+      const jsonData = JSON.stringify(messages)
       localStorage.clear()
       localStorage.setItem('Memos', jsonData)
     },
 
-    test(memoId) {
-      this.clickMemo = this.$store.getters.getMemo(memoId)
-      alert(this.clickMemo.memo)
+    doneMessage(memoId) {
+      const memo = this.$store.getters.getMemo(memoId)
+      this.$store.commit('line', memo)
     },
   },
 }
 </script>
+
 <style scoped>
 .memos {
   display: flex;
@@ -83,5 +84,8 @@ export default {
 }
 .check__box {
   margin-right: 0.2rem;
+}
+p.done {
+  text-decoration: line-through;
 }
 </style>

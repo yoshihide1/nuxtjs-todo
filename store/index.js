@@ -14,6 +14,10 @@ export const mutations = {
     state.messages = []
     state.messages = messageData
   },
+  line(state, memo) {
+    console.log(memo)
+    memo.isDone = !memo.isDone
+  },
 }
 
 export default {

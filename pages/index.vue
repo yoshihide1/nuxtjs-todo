@@ -19,6 +19,7 @@ export default {
 
 <style>
 .container {
+  padding: 0;
   margin: 0 auto;
   text-align: center;
 }
