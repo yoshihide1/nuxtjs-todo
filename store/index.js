@@ -1,5 +1,5 @@
-import getters from './getters.js'
-import actions from './actions.js'
+import getters from './getters'
+import actions from './actions'
 export const state = () => ({
   messages: [],
   sample: 'test',
@@ -12,7 +12,6 @@ export const mutations = {
 }
 
 export default {
-  namespaced: true,
   state,
   mutations,
   actions,

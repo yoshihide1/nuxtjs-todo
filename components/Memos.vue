@@ -1,10 +1,9 @@
 <template>
   <div id="memo">
     <div v-for="(m, index) in messages" :key="index" class="memos">
-      <p v-show="!showMessage">
-        {{ lengthCheck(m.memo) }}
-      </p>
-      <p v-show="showMessage">{{ m.memo }}</p>
+      <p @click="test(m.id)">{{ lengthCheck(m.memo) }}</p>
+      <p>{{ m.id }}</p>
+      <!-- <p @click="test(m.id)">{{ m.memo }}</p> -->
       <small>{{ m.date }}</small>
     </div>
   </div>
@@ -35,8 +34,12 @@ export default {
       return `${m}...`
     },
 
-    test() {
-      this.showMessage = !this.showMessage
+    test(memoId) {
+      console.log(memoId)
+      if (memoId === this.messages.id) {
+        console.log(2222222)
+        this.showMessage = !this.showMessage
+      }
     },
   },
 }
