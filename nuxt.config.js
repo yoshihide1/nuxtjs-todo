@@ -1,7 +1,6 @@
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
-
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'nuxtjs-003-todo',
@@ -34,8 +33,16 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    'nuxt-fontawesome',
   ],
-
+  fontawesome: {
+    imports: [
+      {
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas'],
+      },
+    ],
+  },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
 
