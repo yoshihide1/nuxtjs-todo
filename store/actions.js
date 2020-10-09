@@ -6,6 +6,7 @@ export default {
       memo: message,
       date: myFunc.fetchDate(),
       isDone: false,
+      checkBox: false,
     }
     commit('newMemo', postData)
   },

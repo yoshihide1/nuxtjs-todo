@@ -14,9 +14,20 @@ export const mutations = {
     state.messages = []
     state.messages = messageData
   },
-  line(state, memo) {
-    console.log(memo)
-    memo.isDone = !memo.isDone
+
+  doneLine(state, memo) {
+    const index = state.messages.findIndex((message) => message.id === memo.id)
+    if (state.messages[index].isDone) {
+      state.messages[index].checkBox = false
+      state.messages[index].isDone = false
+    } else {
+      state.messages[index].checkBox = true
+      state.messages[index].isDone = true
+    }
+  },
+
+  deleteAll(state) {
+    state.messages = []
   },
 }
 

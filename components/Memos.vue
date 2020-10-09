@@ -3,7 +3,11 @@
     <div v-for="m in messages" :key="m.id" class="memos">
       <div class="memo__list">
         <p class="check__box">
-          <input type="checkbox" @change="doneMessage(m.id)" />
+          <input
+            type="checkbox"
+            :checked="m.checkBox"
+            @change="doneMessage(m.id)"
+          />
         </p>
         <p :class="{ done: m.isDone }">{{ lengthCheck(m.memo) }}</p>
       </div>
@@ -15,25 +19,34 @@
         <small>{{ m.date }}</small>
       </div>
     </div>
+    <!-- 削除ボタン、サンプル -->
+    <button :disabled="deleteAllButton" @click="deleteAll">全件削除</button>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 export default {
   data() {
-    return {}
+    return {
+      complete: false,
+    }
   },
 
   computed: {
     ...mapState(['messages']),
+    ...mapGetters(['deleteAllButton']),
   },
   watch: {
-    messages() {
-      console.log('watch:', 'messages')
-      this.localData()
+    messages: {
+      handler() {
+        console.log('watch')
+        this.localData()
+      },
+      deep: true,
     },
   },
+
   mounted() {
     const jsonGet = localStorage.getItem('Memos')
     const memoData = JSON.parse(jsonGet)
@@ -68,7 +81,15 @@ export default {
 
     doneMessage(memoId) {
       const memo = this.$store.getters.getMemo(memoId)
-      this.$store.commit('line', memo)
+      this.$store.commit('doneLine', memo)
+    },
+
+    deleteAll() {
+      const res = confirm('本当に消しますか？ ※復元できません')
+      if (res) {
+        localStorage.clear()
+        this.$store.commit('deleteAll')
+      }
     },
   },
 }
