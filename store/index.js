@@ -2,7 +2,7 @@ import getters from './getters'
 import actions from './actions'
 export const state = () => ({
   messages: [],
-  sample: 'test',
+  message: {},
 })
 
 export const mutations = {
@@ -13,6 +13,10 @@ export const mutations = {
   memoBox(state, messageData) {
     state.messages = []
     state.messages = messageData
+  },
+
+  editMemo(state, memo) {
+    state.message = memo
   },
 
   doneLine(state, memo) {

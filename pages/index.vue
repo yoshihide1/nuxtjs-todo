@@ -3,16 +3,19 @@
     <div class="title">Todo-List</div>
     <Posts />
     <Memos />
+    <EditModalWindow />
   </div>
 </template>
 
 <script>
 import Posts from '@/components/Posts'
 import Memos from '@/components/Memos'
+import EditModalWindow from '@/components/EditModalWindow'
 export default {
   components: {
     Posts,
     Memos,
+    EditModalWindow,
   },
 }
 </script>

@@ -13,10 +13,16 @@
       </div>
       <div>
         <font-awesome-icon
+          class="edit__btn"
+          :icon="['fas', 'tools']"
+          @click="editMemo(m.id)"
+        />
+        <small>{{ m.date }}</small>
+        <font-awesome-icon
+          class="delete__btn"
           :icon="['fas', 'trash-alt']"
           @click="deleteMemo(m.id)"
         />
-        <small>{{ m.date }}</small>
       </div>
     </div>
     <!-- 削除ボタン、サンプル -->
@@ -67,6 +73,12 @@ export default {
       return `${m}...`
     },
 
+    editMemo(memoId) {
+      console.log(333)
+      const memo = this.$store.getters.getMemo(memoId)
+      this.$store.commit('editMemo', memo)
+    },
+
     deleteMemo(memoId) {
       const memoList = this.$store.getters.deleteMemo(memoId)
       this.$store.commit('memoBox', memoList)
@@ -95,7 +107,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .memos {
   display: flex;
   justify-content: space-between;
@@ -108,5 +120,11 @@ export default {
 }
 p.done {
   text-decoration: line-through;
+}
+.edit__btn {
+  cursor: pointer;
+}
+.delete__btn {
+  cursor: pointer;
 }
 </style>
