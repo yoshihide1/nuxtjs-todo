@@ -7,7 +7,14 @@
           :icon="['fas', 'times-circle']"
           @click="modalClose"
         />
-        <input class="edit__text" type="text" />
+        <p>{{ task }}</p>
+        <p>
+          <input v-model="editTask.memo" class="edit__text" type="text" />
+        </p>
+        <div>
+          <button @click="saveTask">保存</button>
+          <button @click="modalClose">キャンセル</button>
+        </div>
       </div>
       <div class="modal__back_color" @click="modalClose"></div>
     </div>
@@ -19,20 +26,26 @@ import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      showModal: false,
+      editTask: '',
     }
   },
   computed: {
-    ...mapState(['message']),
+    ...mapState(['task', 'showModal']),
   },
   watch: {
-    message() {
-      this.showModal = true
+    task() {
+      this.editTask = this.task
     },
   },
   methods: {
+    saveTask() {
+      const editTask = this.editTask
+      console.log(111)
+      this.$store.dispatch('updateTask', editTask)
+      this.modalClose()
+    },
     modalClose() {
-      this.showModal = false
+      this.$store.commit('modalClose')
     },
   },
 }
@@ -46,7 +59,7 @@ export default {
   width: 100%;
   height: 100%;
   z-index: 1;
-  transition: 0.5s;
+  transition: 0.6s;
 }
 .modal__inner {
   position: absolute;

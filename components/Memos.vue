@@ -1,31 +1,30 @@
 <template>
   <div id="memo">
-    <div v-for="m in messages" :key="m.id" class="memos">
-      <div class="memo__list">
+    <div v-for="task in taskList" :key="task.id" class="tasks">
+      <div class="task__list">
         <p class="check__box">
           <input
             type="checkbox"
-            :checked="m.checkBox"
-            @change="doneMessage(m.id)"
+            :checked="task.checkBox"
+            @change="taskComplete(task.id)"
           />
         </p>
-        <p :class="{ done: m.isDone }">{{ lengthCheck(m.memo) }}</p>
+        <p :class="{ done: task.isDone }">{{ lengthCheck(task.memo) }}</p>
       </div>
       <div>
         <font-awesome-icon
           class="edit__btn"
           :icon="['fas', 'tools']"
-          @click="editMemo(m.id)"
+          @click="editTask(task.id)"
         />
-        <small>{{ m.date }}</small>
+        <small>{{ task.date }}</small>
         <font-awesome-icon
           class="delete__btn"
           :icon="['fas', 'trash-alt']"
-          @click="deleteMemo(m.id)"
+          @click="deleteTask(task.id)"
         />
       </div>
     </div>
-    <!-- 削除ボタン、サンプル -->
     <button :disabled="deleteAllButton" @click="deleteAll">全件削除</button>
   </div>
 </template>
@@ -40,11 +39,11 @@ export default {
   },
 
   computed: {
-    ...mapState(['messages']),
+    ...mapState(['taskList']),
     ...mapGetters(['deleteAllButton']),
   },
   watch: {
-    messages: {
+    taskList: {
       handler() {
         console.log('watch')
         this.localData()
@@ -54,53 +53,54 @@ export default {
   },
 
   mounted() {
-    const jsonGet = localStorage.getItem('Memos')
-    const memoData = JSON.parse(jsonGet)
-    this.$store.commit('memoBox', memoData)
+    this.init()
   },
 
   methods: {
-    lengthCheck(message) {
-      if (message.length >= 15) {
-        return this.sliceMessage(message)
+    init() {
+      const jsonGet = localStorage.getItem('ToDoList')
+      const taskData = JSON.parse(jsonGet)
+      this.$store.commit('taskList', taskData)
+    },
+    lengthCheck(memo) {
+      if (memo.length >= 15) {
+        return this.sliceTaskMemo(memo)
       } else {
-        return message
+        return memo
       }
     },
 
-    sliceMessage(message) {
-      const m = message.slice(0, 15)
+    sliceTaskMemo(memo) {
+      const m = memo.slice(0, 15)
       return `${m}...`
     },
 
-    editMemo(memoId) {
-      console.log(333)
-      const memo = this.$store.getters.getMemo(memoId)
-      this.$store.commit('editMemo', memo)
+    editTask(taskId) {
+      const index = this.$store.getters.findTaskIndex(taskId)
+      this.$store.commit('modalOpen', index)
     },
 
-    deleteMemo(memoId) {
-      const memoList = this.$store.getters.deleteMemo(memoId)
-      this.$store.commit('memoBox', memoList)
+    deleteTask(taskId) {
+      this.$store.dispatch('deleteTask', taskId)
     },
 
     localData() {
-      const messages = this.messages.filter((v) => v)
-      const jsonData = JSON.stringify(messages)
+      const taskList = this.taskList.filter((v) => v)
+      const jsonData = JSON.stringify(taskList)
       localStorage.clear()
-      localStorage.setItem('Memos', jsonData)
+      localStorage.setItem('ToDoList', jsonData)
     },
 
-    doneMessage(memoId) {
-      const memo = this.$store.getters.getMemo(memoId)
-      this.$store.commit('doneLine', memo)
+    taskComplete(taskId) {
+      const index = this.$store.getters.findTaskIndex(taskId)
+      this.$store.commit('taskComplete', index)
     },
 
     deleteAll() {
       const res = confirm('本当に消しますか？ ※復元できません')
       if (res) {
         localStorage.clear()
-        this.$store.commit('deleteAll')
+        this.$store.commit('deleteAllTask')
       }
     },
   },
@@ -108,11 +108,14 @@ export default {
 </script>
 
 <style>
-.memos {
+.tasks {
   display: flex;
   justify-content: space-between;
+  border-bottom: 2px solid black;
+  margin-bottom: 1rem;
+  padding: 0 5px;
 }
-.memo__list {
+.task__list {
   display: flex;
 }
 .check__box {
