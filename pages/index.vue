@@ -2,6 +2,7 @@
   <div class="container">
     <div class="title">Todo-List</div>
     <Posts />
+    <TaskCounts />
     <Memos />
     <EditModalWindow />
   </div>
@@ -9,11 +10,13 @@
 
 <script>
 import Posts from '@/components/Posts'
+import TaskCounts from '@/components/TaskCounts'
 import Memos from '@/components/Memos'
 import EditModalWindow from '@/components/EditModalWindow'
 export default {
   components: {
     Posts,
+    TaskCounts,
     Memos,
     EditModalWindow,
   },
