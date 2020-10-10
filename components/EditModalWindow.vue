@@ -40,9 +40,6 @@ export default {
   methods: {
     saveTask() {
       this.$store.dispatch('updateTask', this.editTask)
-      this.modalClose()
-    },
-    modalClose() {
       this.$store.commit('modalClose')
     },
   },
