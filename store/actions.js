@@ -1,13 +1,30 @@
 import { myFunc } from '../plugins/myFunc'
 export default {
-  postMessage({ commit }, message) {
-    const postData = {
-      id: myFunc.fetchId(),
+  addTask({ commit }, message) {
+    const taskData = {
+      id: myFunc.createId(),
       memo: message,
-      date: myFunc.fetchDate(),
+      date: `${myFunc.fetchDate()}作成`,
       isDone: false,
       checkBox: false,
     }
-    commit('newMemo', postData)
+    commit('newTask', taskData)
+  },
+
+  updateTask({ commit, getters }, task) {
+    const i = getters.findTaskIndex(task.id)
+    const taskData = {
+      id: myFunc.createId(),
+      memo: task.memo,
+      date: `${myFunc.fetchDate()}更新`,
+      isDone: false,
+      checkBox: false,
+    }
+    commit('updateTask', { task: taskData, index: i })
+  },
+
+  deleteTask({ commit, getters }, taskId) {
+    const taskList = getters.deleteTask(taskId)
+    commit('taskList', taskList)
   },
 }

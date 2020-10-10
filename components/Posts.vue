@@ -1,12 +1,12 @@
 <template>
   <div id="post">
     <input
-      v-model="message"
+      v-model="taskMemo"
       class="memo__form"
       type="text"
       placeholder="memo"
     />
-    <button class="memo__button" @click="postMemo">メモ</button>
+    <button class="memo__button" @click="addTask">メモ</button>
   </div>
 </template>
 
@@ -14,16 +14,16 @@
 export default {
   data() {
     return {
-      message: '',
+      taskMemo: '',
     }
   },
   methods: {
-    postMemo() {
-      if (!this.message) {
+    addTask() {
+      if (!this.taskMemo) {
         return alert('入力してください')
       }
-      this.$store.dispatch('postMessage', this.message)
-      this.message = ''
+      this.$store.dispatch('addTask', this.taskMemo)
+      this.taskMemo = ''
     },
   },
 }
@@ -41,7 +41,9 @@ export default {
 .memo__form {
   width: 80%;
 }
-
+.memo__date {
+  width: 20%;
+}
 .memo__button {
   width: 20%;
   background-color: green;

@@ -1,14 +1,18 @@
 export default {
-  getMemo: (state) => (memoId) => {
-    return state.messages.find((memo) => memo.id === memoId)
+  findTaskIndex: (state) => (taskId) => {
+    return state.taskList.findIndex((task) => task.id === taskId)
   },
 
-  deleteMemo: (state) => (memoId) => {
-    return state.messages.filter((memo) => memo.id !== memoId)
+  findTask: (state) => (taskId) => {
+    return state.taskList.find((task) => task.id === taskId)
+  },
+
+  deleteTask: (state) => (taskId) => {
+    return state.taskList.filter((task) => task.id !== taskId)
   },
 
   deleteAllButton: (state) => {
-    const num = state.messages.length
+    const num = state.taskList.length
     if (num > 0) {
       return false
     } else {
