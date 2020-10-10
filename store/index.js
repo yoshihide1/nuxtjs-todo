@@ -11,11 +11,8 @@ export const mutations = {
     state.taskList.push(taskData)
   },
 
-  updateTask(state, task, index) {
-    console.log(task)
-    const a = state.taskList.splice(index, 1, task)
-    console.log('a', a)
-    console.log(state.taskList)
+  updateTask(state, taskData) {
+    state.taskList.splice(taskData.index, 1, taskData.task)
   },
 
   taskList(state, taskData) {

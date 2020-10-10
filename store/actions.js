@@ -4,7 +4,7 @@ export default {
     const taskData = {
       id: myFunc.createId(),
       memo: message,
-      date: myFunc.fetchDate(),
+      date: `${myFunc.fetchDate()}作成`,
       isDone: false,
       checkBox: false,
     }
@@ -12,8 +12,7 @@ export default {
   },
 
   updateTask({ commit, getters }, task) {
-    console.log(222)
-    const index = getters.findTaskIndex(task.id)
+    const i = getters.findTaskIndex(task.id)
     const taskData = {
       id: myFunc.createId(),
       memo: task.memo,
@@ -21,7 +20,7 @@ export default {
       isDone: false,
       checkBox: false,
     }
-    commit('updateTask', taskData, index)
+    commit('updateTask', { task: taskData, index: i })
   },
 
   deleteTask({ commit, getters }, taskId) {

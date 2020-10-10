@@ -34,14 +34,12 @@ export default {
   },
   watch: {
     task() {
-      this.editTask = this.task
+      this.editTask = { ...this.task }
     },
   },
   methods: {
     saveTask() {
-      const editTask = this.editTask
-      console.log(111)
-      this.$store.dispatch('updateTask', editTask)
+      this.$store.dispatch('updateTask', this.editTask)
       this.modalClose()
     },
     modalClose() {
