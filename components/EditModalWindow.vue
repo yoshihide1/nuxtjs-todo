@@ -11,6 +11,9 @@
         <p>
           <input v-model="editTask.memo" class="edit__text" type="text" />
         </p>
+        <p>
+          <input v-model="editTask.limit" type="date" />
+        </p>
         <div>
           <button @click="saveTask">保存</button>
           <button @click="modalClose">キャンセル</button>
@@ -35,6 +38,7 @@ export default {
   watch: {
     task() {
       this.editTask = { ...this.task }
+      this.editTask.limit = this.dateFormat(this.editTask.limit)
     },
   },
   methods: {
@@ -44,6 +48,9 @@ export default {
     },
     modalClose() {
       this.$store.commit('modalClose')
+    },
+    dateFormat(date) {
+      return date.replace(/[/]/g, '-')
     },
   },
 }

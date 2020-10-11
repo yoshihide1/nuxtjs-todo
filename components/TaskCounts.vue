@@ -54,6 +54,9 @@ export default {
     },
 
     rate() {
+      if (this.totalTask === 0) {
+        return 0
+      }
       this.completeRate = Math.floor((this.completeTask / this.totalTask) * 100)
     },
   },

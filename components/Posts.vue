@@ -6,7 +6,12 @@
       type="text"
       placeholder="memo"
     />
-    <button class="memo__button" @click="addTask">メモ</button>
+    <div>
+      <!-- 高<input type="radio" /> 中<input type="radio" /> 低<input type="radio" /> -->
+      <span>期限</span><input v-model="timeLimit" type="date" />
+      <button class="memo__button" @click="addTask">追加</button>
+      <p>{{ timeLimit }}</p>
+    </div>
   </div>
 </template>
 
@@ -15,15 +20,37 @@ export default {
   data() {
     return {
       taskMemo: '',
+      timeLimit: '',
     }
+  },
+  mounted() {
+    this.timeLimit = this.fetchDate()
   },
   methods: {
     addTask() {
       if (!this.taskMemo) {
         return alert('入力してください')
       }
-      this.$store.dispatch('addTask', this.taskMemo)
+      this.$store.dispatch('addTask', {
+        memo: this.taskMemo,
+        limit: this.dateFormat(this.timeLimit),
+      })
       this.taskMemo = ''
+    },
+    dateFormat() {
+      return this.timeLimit.replace(/[-]/g, '/')
+    },
+
+    fetchDate() {
+      const d = new Date()
+      d.setDate(d.getDate() + 7)
+      const date1 = d.getDate()
+      let date2 = date1
+      if (date1 < 10) {
+        date2 = `0${String(date1)}`
+      }
+      const limitDate = `${d.getFullYear()}-${d.getMonth() + 1}-${date2}`
+      return limitDate
     },
   },
 }
@@ -33,10 +60,11 @@ export default {
 #post {
   width: 100%;
   position: fixed;
-  display: flex;
   bottom: 0;
   left: 0;
   border: 1px solid green;
+  background-color: cadetblue;
+  padding: 10px;
 }
 .memo__form {
   width: 80%;

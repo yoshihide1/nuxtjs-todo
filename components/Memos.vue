@@ -18,6 +18,7 @@
         <p :class="{ done: task.isDone }">{{ lengthCheck(task.memo) }}</p>
       </div>
       <div>
+        <small>期限{{ task.limit }}</small>
         <font-awesome-icon
           class="edit__btn"
           :icon="['fas', 'tools']"

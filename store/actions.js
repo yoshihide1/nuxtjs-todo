@@ -1,10 +1,11 @@
 import { myFunc } from '../plugins/myFunc'
 export default {
-  addTask({ commit }, message) {
+  addTask({ commit }, task) {
     const taskData = {
       id: myFunc.createId(),
-      memo: message,
-      date: `${myFunc.fetchDate()}作成`,
+      memo: task.memo,
+      date: `作成${myFunc.fetchDate()}`,
+      limit: task.limit,
       isDone: false,
       checkBox: false,
     }
@@ -16,7 +17,8 @@ export default {
     const taskData = {
       id: myFunc.createId(),
       memo: task.memo,
-      date: `${myFunc.fetchDate()}更新`,
+      date: `更新${myFunc.fetchDate()}`,
+      limit: task.limit.replace(/[-]/g, '/'),
       isDone: false,
       checkBox: false,
     }
