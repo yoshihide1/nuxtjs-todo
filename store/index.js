@@ -35,7 +35,6 @@ export const mutations = {
     }
   },
   modalOpen(state, index) {
-    // const index = state.taskList.findIndex((task) => task.id === memo.id)
     state.task = state.taskList[index]
     state.showModal = true
   },

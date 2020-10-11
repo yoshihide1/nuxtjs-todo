@@ -1,6 +1,12 @@
 <template>
   <div id="memo">
-    <div v-for="task in taskList" :key="task.id" class="tasks">
+    <div>
+      <small>絞り込み</small>
+      <button @click="taskFiltering('all')">全て</button>
+      <button @click="taskFiltering(true)">完了</button>
+      <button @click="taskFiltering(false)">未完</button>
+    </div>
+    <div v-for="task in tasks" :key="task.id" class="tasks">
       <div class="task__list">
         <p class="check__box">
           <input
@@ -35,6 +41,7 @@ export default {
   data() {
     return {
       complete: false,
+      tasks: [],
     }
   },
 
@@ -46,6 +53,7 @@ export default {
     taskList: {
       handler() {
         console.log('watch')
+        this.tasks = this.taskList
         this.localData()
       },
       deep: true,
@@ -101,6 +109,13 @@ export default {
       if (res) {
         localStorage.clear()
         this.$store.commit('deleteAllTask')
+      }
+    },
+    taskFiltering(boolean) {
+      if (boolean === 'all') {
+        this.tasks = this.taskList
+      } else {
+        this.tasks = this.$store.getters.filtering(boolean)
       }
     },
   },
