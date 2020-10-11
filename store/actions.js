@@ -27,4 +27,9 @@ export default {
     const taskList = getters.deleteTask(taskId)
     commit('taskList', taskList)
   },
+
+  deleteCompletedTask({ commit, getters }) {
+    const taskList = getters.filtering(false)
+    commit('taskList', taskList)
+  },
 }

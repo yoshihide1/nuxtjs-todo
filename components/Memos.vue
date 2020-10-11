@@ -31,6 +31,7 @@
         />
       </div>
     </div>
+    <button @click="deleteCompleted">完了済み削除</button>
     <button :disabled="deleteAllButton" @click="deleteAll">全件削除</button>
   </div>
 </template>
@@ -102,6 +103,13 @@ export default {
     taskComplete(taskId) {
       const index = this.$store.getters.findTaskIndex(taskId)
       this.$store.commit('taskComplete', index)
+    },
+
+    deleteCompleted() {
+      const res = confirm('完了済みタスクを全て削除しますか？ ※復元できません')
+      if (res) {
+        this.$store.dispatch('deleteCompletedTask')
+      }
     },
 
     deleteAll() {
