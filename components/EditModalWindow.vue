@@ -7,13 +7,18 @@
           :icon="['fas', 'times-circle']"
           @click="modalClose"
         />
-        <p>{{ task }}</p>
         <p>
-          <input v-model="editTask.memo" class="edit__text" type="text" />
+          <textarea v-model="editTask.memo" class="edit__text" rows="11" />
         </p>
-        <div>
-          <button @click="saveTask">保存</button>
-          <button @click="modalClose">キャンセル</button>
+        <p>
+          <span class="edit__limit">期限</span
+          ><input v-model="editTask.limit" type="date" />
+        </p>
+        <div class="edit__btn">
+          <b-button variant="outline-warning" @click="saveTask">保存</b-button>
+          <b-button variant="outline-warning" @click="modalClose"
+            >キャンセル</b-button
+          >
         </div>
       </div>
       <div class="modal__back_color" @click="modalClose"></div>
@@ -35,6 +40,7 @@ export default {
   watch: {
     task() {
       this.editTask = { ...this.task }
+      this.editTask.limit = this.dateFormat(this.editTask.limit)
     },
   },
   methods: {
@@ -44,6 +50,9 @@ export default {
     },
     modalClose() {
       this.$store.commit('modalClose')
+    },
+    dateFormat(date) {
+      return date.replace(/[/]/g, '-')
     },
   },
 }
@@ -61,12 +70,13 @@ export default {
 }
 .modal__inner {
   position: absolute;
+  border-radius: 5px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 60%;
-  height: 60%;
-  background-color: burlywood;
+  height: 70%;
+  background-color: #150c15;
   z-index: 3;
 }
 .close__btn {
@@ -76,8 +86,10 @@ export default {
   font-size: 3rem;
   width: 50px;
   height: 50px;
+  margin: 10px 10px 0 0;
   line-height: 50px;
   text-align: center;
+  color: #917c50;
   cursor: pointer;
 }
 .modal__back_color {
@@ -86,8 +98,26 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(255, 255, 255, 0.6);
   z-index: 1;
   cursor: pointer;
+}
+.edit__text {
+  margin-top: 70px;
+  width: 90%;
+  border-radius: 5px;
+}
+.edit__limit {
+  color: #fff;
+  margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 480px) {
+  .modal__inner {
+    width: 90%;
+  }
+  .edit__btn {
+    margin: 5rem;
+  }
 }
 </style>

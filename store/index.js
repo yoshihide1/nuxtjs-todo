@@ -34,11 +34,28 @@ export const mutations = {
       state.taskList[index].isDone = true
     }
   },
+
+  taskSortAsc(state, target) {
+    state.taskList.sort((a, b) => {
+      if (a[target] < b[target]) return -1
+      if (a[target] > b[target]) return 1
+      return 0
+    })
+  },
+
+  taskSortDesc(state, target) {
+    state.taskList.sort((a, b) => {
+      if (a[target] > b[target]) return -1
+      if (a[target] < b[target]) return 1
+      return 0
+    })
+  },
+
   modalOpen(state, index) {
-    // const index = state.taskList.findIndex((task) => task.id === memo.id)
     state.task = state.taskList[index]
     state.showModal = true
   },
+
   modalClose(state) {
     state.showModal = false
   },

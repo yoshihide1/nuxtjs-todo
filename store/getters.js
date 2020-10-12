@@ -11,6 +11,10 @@ export default {
     return state.taskList.filter((task) => task.id !== taskId)
   },
 
+  filtering: (state) => (boolean) => {
+    return state.taskList.filter((task) => task.isDone === boolean)
+  },
+
   deleteAllButton: (state) => {
     const num = state.taskList.length
     if (num > 0) {
