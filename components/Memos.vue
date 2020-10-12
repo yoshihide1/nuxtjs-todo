@@ -15,16 +15,23 @@
             @change="taskComplete(task.id)"
           />
         </p>
-        <p :class="{ done: task.isDone }">{{ lengthCheck(task.memo) }}</p>
+        <details>
+          <summary>
+            <span :class="{ done: task.isDone }">
+              {{ lengthCheck(task.memo) }}
+            </span>
+          </summary>
+          <p>{{ task.memo }}</p>
+        </details>
       </div>
-      <div>
-        <small>期限{{ task.limit }}</small>
-        <small>期限まで残り{{ getLimit(task.limit) }}日</small>
+      <div class="task__limit">
         <font-awesome-icon
           class="edit__btn"
           :icon="['fas', 'tools']"
           @click="editTask(task.id)"
         />
+        <small>期限{{ task.limit }}</small>
+        <small>残り{{ getLimit(task.limit) }}日</small>
         <small>{{ task.date }}</small>
         <font-awesome-icon
           class="delete__btn"
@@ -147,8 +154,6 @@ export default {
 
 <style>
 .tasks {
-  display: flex;
-  justify-content: space-between;
   border-bottom: 2px solid black;
   margin-bottom: 1rem;
   padding: 0 5px;
@@ -156,10 +161,14 @@ export default {
 .task__list {
   display: flex;
 }
-.check__box {
-  margin-right: 0.2rem;
+.task__limit {
+  display: flex;
+  justify-content: space-between;
 }
-p.done {
+.check__box {
+  margin-right: 0.6rem;
+}
+span.done {
   text-decoration: line-through;
 }
 .edit__btn {
