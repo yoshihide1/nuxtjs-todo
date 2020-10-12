@@ -1,11 +1,18 @@
 <template>
   <div id="task__count">
-    <p class="task__count"><span>全体</span>{{ totalTask }}</p>
-    <p class="task__count"><span>完了</span>{{ completeTask }}</p>
-    <p class="task__count"><span>未完</span>{{ remainingTask }}</p>
-    <p class="task__count">
-      <span>完了率</span>{{ completeRate }}<span>%</span>
-    </p>
+    <b-badge variant="primary" class="task__count"
+      ><span class="task__count__text">全体</span>{{ totalTask }}</b-badge
+    >
+    <b-badge variant="primary" class="task__count"
+      ><span class="task__count__text">完了</span>{{ completeTask }}</b-badge
+    >
+    <b-badge variant="primary" class="task__count"
+      ><span class="task__count__text">未完</span>{{ remainingTask }}</b-badge
+    >
+    <b-badge variant="primary" class="task__count">
+      <span class="task__count__text">完了率</span>{{ completeRate
+      }}<span>%</span>
+    </b-badge>
   </div>
 </template>
 
@@ -65,15 +72,16 @@ export default {
 
 <style>
 #task__count {
+  width: 100%;
   display: flex;
   justify-content: center;
-  background-color: cyan;
 }
 .task__count {
   margin: 0 1rem;
+  font-size: 1rem;
 }
-.task__count span {
-  font-size: 0.7rem;
-  margin-right: 0.5rem;
+.task__count__text {
+  font-size: 0.8rem;
+  margin-right: 0.3rem;
 }
 </style>

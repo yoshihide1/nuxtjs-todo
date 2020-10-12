@@ -1,15 +1,19 @@
 <template>
   <div id="post">
-    <input
-      v-model="taskMemo"
-      class="memo__form"
-      type="text"
-      placeholder="memo"
-    />
-    <div>
-      <span>期限</span><input v-model="timeLimit" type="date" />
-      <button class="memo__button" @click="addTask">追加</button>
-      <p>{{ timeLimit }}</p>
+    <div class="date__form">
+      <small>期限</small
+      ><input v-model="timeLimit" type="date" class="memo__date" />
+    </div>
+    <div class="input__group">
+      <b-input
+        v-model="taskMemo"
+        class="memo__form"
+        type="text"
+        placeholder="タスクの追加"
+      />
+      <b-button variant="outline-success" class="memo__button" @click="addTask"
+        ><font-awesome-icon :icon="['fas', 'pen-nib']" />
+      </b-button>
     </div>
   </div>
 </template>
@@ -61,19 +65,32 @@ export default {
   position: fixed;
   bottom: 0;
   left: 0;
-  border: 1px solid green;
-  background-color: cadetblue;
-  padding: 10px;
+  padding-top: 0.5rem;
+  border-top: 1px solid #28a745;
+  background-color: #6c757d;
+}
+.date__form {
+  display: flex;
+  justify-self: start;
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
 }
 .memo__form {
   width: 80%;
 }
 .memo__date {
-  width: 20%;
+  align-items: end;
+  border-radius: 5px;
+  border: 1px solid #28a745;
+  color: #28a745;
+  margin-right: 10px;
 }
 .memo__button {
   width: 20%;
-  background-color: green;
-  color: white;
+}
+.input__group {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 </style>

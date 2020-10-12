@@ -1,13 +1,43 @@
 <template>
   <div id="memo">
-    <div>
-      <small>絞り込み</small>
-      <button @click="taskFiltering('all')">全て</button>
-      <button @click="taskFiltering(true)">完了</button>
-      <button @click="taskFiltering(false)">未完</button>
-      <small>ソート</small>
-      <button @click="taskSort('limit')">期限</button>
-      <button @click="taskSort('created')">作成.更新</button>
+    <div class="task__controller">
+      <div>
+        <p>
+          <small>絞り込み</small>
+        </p>
+        <b-button
+          variant="outline-success"
+          class=""
+          @click="taskFiltering('all')"
+          >全て</b-button
+        >
+        <b-button
+          variant="outline-success"
+          class=""
+          @click="taskFiltering(true)"
+          >完了</b-button
+        >
+        <b-button
+          variant="outline-success"
+          class=""
+          @click="taskFiltering(false)"
+          >未完</b-button
+        >
+      </div>
+      <div>
+        <p>
+          <small>ソート</small>
+        </p>
+        <b-button variant="outline-success" class="" @click="taskSort('limit')"
+          >期限</b-button
+        >
+        <b-button
+          variant="outline-success"
+          class=""
+          @click="taskSort('created')"
+          >作成.更新</b-button
+        >
+      </div>
     </div>
     <div v-for="task in tasks" :key="task.id" class="tasks">
       <div class="task__list">
@@ -43,8 +73,15 @@
         />
       </div>
     </div>
-    <button @click="deleteCompleted">完了済み削除</button>
-    <button :disabled="deleteAllButton" @click="deleteAll">全件削除</button>
+    <b-button variant="outline-danger" @click="deleteCompleted"
+      >完了<font-awesome-icon :icon="['fas', 'trash-alt']"
+    /></b-button>
+    <b-button
+      variant="outline-danger"
+      :disabled="deleteAllButton"
+      @click="deleteAll"
+      >全件<font-awesome-icon :icon="['fas', 'trash-alt']"
+    /></b-button>
   </div>
 </template>
 
@@ -168,10 +205,20 @@ export default {
 </script>
 
 <style>
+.btn-outline-success {
+  padding: 3px 10px;
+}
 .tasks {
   border-bottom: 2px solid black;
   margin-bottom: 1rem;
   padding: 0 5px;
+}
+.task__controller {
+  display: flex;
+  justify-content: space-between;
+}
+.task__controller p {
+  margin: 0;
 }
 .task__list {
   display: flex;
