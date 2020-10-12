@@ -19,6 +19,7 @@
       </div>
       <div>
         <small>期限{{ task.limit }}</small>
+        <small>期限まで残り{{ getLimit(task.limit) }}日</small>
         <font-awesome-icon
           class="edit__btn"
           :icon="['fas', 'tools']"
@@ -44,6 +45,7 @@ export default {
     return {
       complete: false,
       tasks: [],
+      timeLimit: 0,
     }
   },
 
@@ -72,6 +74,18 @@ export default {
       const taskData = JSON.parse(jsonGet)
       this.$store.commit('taskList', taskData)
     },
+
+    getLimit(limit) {
+      const year = Number(limit.slice(0, 4))
+      const month = Number(limit.slice(5, 7)) - 1
+      const date = Number(limit.slice(8, 10))
+      const limitDate = new Date(year, month, date)
+      const d = new Date()
+      const nowDate = new Date(d.getFullYear(), d.getMonth(), d.getDate())
+      const day = 1000 * 60 * 60 * 24
+      return (limitDate - nowDate) / day
+    },
+
     lengthCheck(memo) {
       if (memo.length >= 15) {
         return this.sliceTaskMemo(memo)
