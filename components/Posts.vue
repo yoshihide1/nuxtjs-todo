@@ -7,7 +7,6 @@
       placeholder="memo"
     />
     <div>
-      <!-- 高<input type="radio" /> 中<input type="radio" /> 低<input type="radio" /> -->
       <span>期限</span><input v-model="timeLimit" type="date" />
       <button class="memo__button" @click="addTask">追加</button>
       <p>{{ timeLimit }}</p>

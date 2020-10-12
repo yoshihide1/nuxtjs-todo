@@ -5,6 +5,9 @@
       <button @click="taskFiltering('all')">全て</button>
       <button @click="taskFiltering(true)">完了</button>
       <button @click="taskFiltering(false)">未完</button>
+      <small>ソート</small>
+      <button @click="taskSort('limit')">期限</button>
+      <button @click="taskSort('created')">作成.更新</button>
     </div>
     <div v-for="task in tasks" :key="task.id" class="tasks">
       <div class="task__list">
@@ -31,7 +34,7 @@
           @click="editTask(task.id)"
         />
         <small>期限{{ task.limit }}</small>
-        <small>残り{{ getLimit(task.limit) }}日</small>
+        <small>{{ getLimit(task.limit, task) }}</small>
         <small>{{ task.date }}</small>
         <font-awesome-icon
           class="delete__btn"
@@ -53,6 +56,7 @@ export default {
       complete: false,
       tasks: [],
       timeLimit: 0,
+      sortFacing: 'desc',
     }
   },
 
@@ -82,7 +86,7 @@ export default {
       this.$store.commit('taskList', taskData)
     },
 
-    getLimit(limit) {
+    getLimit(limit, task) {
       const year = Number(limit.slice(0, 4))
       const month = Number(limit.slice(5, 7)) - 1
       const date = Number(limit.slice(8, 10))
@@ -90,20 +94,21 @@ export default {
       const d = new Date()
       const nowDate = new Date(d.getFullYear(), d.getMonth(), d.getDate())
       const day = 1000 * 60 * 60 * 24
-      return (limitDate - nowDate) / day
+      const result = (limitDate - nowDate) / day
+      const returnValue = this.limitCheck(result, task)
+      return returnValue
+    },
+
+    limitCheck(result, task) {
+      if (task.isDone) return '完了済み'
+      else if (result === 0) return '今日が期限日です'
+      else if (result < 0) return '期限が過ぎています'
+      else return `残り${result}日`
     },
 
     lengthCheck(memo) {
-      if (memo.length >= 15) {
-        return this.sliceTaskMemo(memo)
-      } else {
-        return memo
-      }
-    },
-
-    sliceTaskMemo(memo) {
-      const m = memo.slice(0, 15)
-      return `${m}...`
+      if (memo.length >= 15) return `${memo.slice(0, 15)}...`
+      else return memo
     },
 
     editTask(taskId) {
@@ -146,6 +151,16 @@ export default {
         this.tasks = this.taskList
       } else {
         this.tasks = this.$store.getters.filtering(boolean)
+      }
+    },
+
+    taskSort(target) {
+      if (this.sortFacing === 'desc') {
+        this.sortFacing = 'asc'
+        this.$store.commit('taskSortAsc', target)
+      } else {
+        this.sortFacing = 'desc'
+        this.$store.commit('taskSortDesc', target)
       }
     },
   },
