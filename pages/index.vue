@@ -24,14 +24,20 @@ export default {
 </script>
 
 <style>
+#__layout {
+  background-color: #494544;
+  color: #fff;
+}
 .container {
+  width: 100%;
   padding: 0;
   margin: 0 auto;
   text-align: center;
 }
 .title {
-  font-size: 2rem;
-  border-bottom: 2px solid black;
+  font-size: 2.3rem;
+  font-style: italic;
+  border-bottom: 2px solid #c41a30;
   margin-bottom: 1rem;
 }
 </style>

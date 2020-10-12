@@ -1,5 +1,5 @@
 <template>
-  <div id="memo">
+  <div id="tasks">
     <div class="task__controller">
       <div>
         <p>
@@ -73,15 +73,17 @@
         />
       </div>
     </div>
-    <b-button variant="outline-danger" @click="deleteCompleted"
-      >完了<font-awesome-icon :icon="['fas', 'trash-alt']"
-    /></b-button>
-    <b-button
-      variant="outline-danger"
-      :disabled="deleteAllButton"
-      @click="deleteAll"
-      >全件<font-awesome-icon :icon="['fas', 'trash-alt']"
-    /></b-button>
+    <div>
+      <b-button variant="outline-danger" @click="deleteCompleted"
+        >完了<font-awesome-icon :icon="['fas', 'trash-alt']"
+      /></b-button>
+      <b-button
+        variant="outline-danger"
+        :disabled="deleteAllButton"
+        @click="deleteAll"
+        >全件<font-awesome-icon :icon="['fas', 'trash-alt']"
+      /></b-button>
+    </div>
   </div>
 </template>
 
@@ -104,7 +106,6 @@ export default {
   watch: {
     taskList: {
       handler() {
-        console.log('watch')
         this.tasks = this.taskList
         this.localData()
       },
@@ -205,11 +206,14 @@ export default {
 </script>
 
 <style>
+#tasks {
+  padding-bottom: 90px;
+}
 .btn-outline-success {
   padding: 3px 10px;
 }
 .tasks {
-  border-bottom: 2px solid black;
+  border-bottom: 3px solid #c41a30;
   margin-bottom: 1rem;
   padding: 0 5px;
 }

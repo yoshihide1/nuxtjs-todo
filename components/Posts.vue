@@ -1,8 +1,19 @@
 <template>
   <div id="post">
     <div class="date__form">
-      <small>期限</small
-      ><input v-model="timeLimit" type="date" class="memo__date" />
+      <div>
+        <small>期限</small
+        ><input v-model="timeLimit" type="date" class="memo__date" />
+      </div>
+      <b-button
+        variant="outline-success"
+        class="eraser__button"
+        @click="clearTask"
+        ><font-awesome-icon :icon="['fas', 'eraser']" />
+      </b-button>
+      <b-button variant="outline-success" class="memo__button" @click="addTask"
+        ><font-awesome-icon :icon="['fas', 'pen-nib']" />
+      </b-button>
     </div>
     <div class="input__group">
       <b-input
@@ -11,9 +22,6 @@
         type="text"
         placeholder="タスクの追加"
       />
-      <b-button variant="outline-success" class="memo__button" @click="addTask"
-        ><font-awesome-icon :icon="['fas', 'pen-nib']" />
-      </b-button>
     </div>
   </div>
 </template>
@@ -40,6 +48,11 @@ export default {
       })
       this.taskMemo = ''
     },
+
+    clearTask() {
+      this.taskMemo = ''
+    },
+
     dateFormat() {
       return this.timeLimit.replace(/[-]/g, '/')
     },
@@ -65,25 +78,30 @@ export default {
   position: fixed;
   bottom: 0;
   left: 0;
-  padding-top: 0.5rem;
-  border-top: 1px solid #28a745;
-  background-color: #6c757d;
+  background-color: #494544;
+  border-top: 2px solid #bac8c6;
 }
 .date__form {
   display: flex;
-  justify-self: start;
-  margin-left: 1rem;
-  margin-bottom: 0.5rem;
+  justify-content: space-between;
+  margin: 0 1rem;
+  padding-top: 1rem;
+}
+.eraser__button {
+  width: 20%;
 }
 .memo__form {
-  width: 80%;
+  margin-top: 10px;
+  background-color: #494544;
+  border: 0 solid;
+  border-bottom: 5px solid #bac8c6;
 }
 .memo__date {
-  align-items: end;
+  border: 1px solid #bac8c6;
   border-radius: 5px;
-  border: 1px solid #28a745;
-  color: #28a745;
-  margin-right: 10px;
+  background-color: #494544;
+  margin-left: 5px;
+  color: #fff;
 }
 .memo__button {
   width: 20%;
@@ -91,6 +109,5 @@ export default {
 .input__group {
   width: 100%;
   display: flex;
-  justify-content: center;
 }
 </style>
