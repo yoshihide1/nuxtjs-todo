@@ -1,33 +1,67 @@
 import getters from './getters'
 import actions from './actions'
 export const state = () => ({
-  messages: [],
-  sample: 'test',
+  taskList: [],
+  task: {},
+  showModal: false,
 })
 
 export const mutations = {
-  newMemo(state, messageData) {
-    state.messages.push(messageData)
+  newTask(state, taskData) {
+    state.taskList.push(taskData)
   },
 
-  memoBox(state, messageData) {
-    state.messages = []
-    state.messages = messageData
+  updateTask(state, taskData) {
+    state.taskList.splice(taskData.index, 1, taskData.task)
   },
 
-  doneLine(state, memo) {
-    const index = state.messages.findIndex((message) => message.id === memo.id)
-    if (state.messages[index].isDone) {
-      state.messages[index].checkBox = false
-      state.messages[index].isDone = false
+  taskList(state, taskData) {
+    state.taskList = []
+    state.taskList = taskData
+  },
+
+  taskEdit(state, memo) {
+    const index = state.taskList.findIndex((task) => task.id === memo.id)
+    state.taskList[index].memo = memo.memo
+  },
+
+  taskComplete(state, index) {
+    if (state.taskList[index].isDone) {
+      state.taskList[index].checkBox = false
+      state.taskList[index].isDone = false
     } else {
-      state.messages[index].checkBox = true
-      state.messages[index].isDone = true
+      state.taskList[index].checkBox = true
+      state.taskList[index].isDone = true
     }
   },
 
-  deleteAll(state) {
-    state.messages = []
+  taskSortAsc(state, target) {
+    state.taskList.sort((a, b) => {
+      if (a[target] < b[target]) return -1
+      if (a[target] > b[target]) return 1
+      return 0
+    })
+  },
+
+  taskSortDesc(state, target) {
+    state.taskList.sort((a, b) => {
+      if (a[target] > b[target]) return -1
+      if (a[target] < b[target]) return 1
+      return 0
+    })
+  },
+
+  modalOpen(state, index) {
+    state.task = state.taskList[index]
+    state.showModal = true
+  },
+
+  modalClose(state) {
+    state.showModal = false
+  },
+
+  deleteAllTask(state) {
+    state.taskList = []
   },
 }
 
