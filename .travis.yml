@@ -12,7 +12,7 @@ branches:
 
 install:
   - npm install
-  - npm run generate
+  - DEPLOY_ENV=GH_PAGES npm run generate
 
 script:
   - echo "Skipping tests"
