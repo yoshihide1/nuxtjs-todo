@@ -1,19 +1,21 @@
 <template>
   <div id="post">
-    <div class="date__form">
+    <div class="post__form">
+      <b-button
+        variant="outline-light"
+        class="eraser__button"
+        @click="clearTask"
+        ><font-awesome-icon :icon="['fas', 'eraser']" />
+        <span class="sp__none">消す</span></b-button
+      >
       <div>
         <small>期限</small
         ><input v-model="timeLimit" type="date" class="memo__date" />
       </div>
-      <b-button
-        variant="outline-success"
-        class="eraser__button"
-        @click="clearTask"
-        ><font-awesome-icon :icon="['fas', 'eraser']" />
-      </b-button>
-      <b-button variant="outline-success" class="memo__button" @click="addTask"
+      <b-button variant="outline-light" class="memo__button" @click="addTask"
         ><font-awesome-icon :icon="['fas', 'pen-nib']" />
-      </b-button>
+        <span class="sp__none">追加</span></b-button
+      >
     </div>
     <div class="input__group">
       <b-input
@@ -35,9 +37,11 @@ export default {
       timeLimit: '',
     }
   },
+
   mounted() {
     this.timeLimit = this.fetchDate()
   },
+
   methods: {
     addTask() {
       if (!this.taskMemo) {
@@ -75,34 +79,37 @@ export default {
 
 <style>
 #post {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  background-color: #494544;
+  width: 80%;
+  padding: 10px;
+  background-color: #002a5b;
+  border-radius: 5px;
+  border: 2px solid #70372c;
+  margin: 0 auto;
 }
-.date__form {
+.post__form {
   display: flex;
   justify-content: space-between;
   margin: 0 1rem;
   padding-top: 1rem;
+}
+.post__form small {
+  color: #d7000f;
 }
 .eraser__button {
   width: 20%;
 }
 .memo__form {
   margin-top: 10px;
-  background-color: #494544;
-  border: 0 solid;
-  border-bottom: 5px solid #bac8c6;
+  background-color: #eaf6fd;
+  border: 2px solid #d7000f;
   color: #fff;
 }
 .memo__date {
-  border: 1px solid #bac8c6;
+  border: 1px solid #002a5b;
   border-radius: 5px;
-  background-color: #494544;
+  background-color: #eaf6fd;
   margin-left: 5px;
-  color: #fff;
+  color: #002a5b;
 }
 .memo__button {
   width: 20%;
@@ -110,5 +117,14 @@ export default {
 .input__group {
   width: 100%;
   display: flex;
+}
+
+@media screen and (max-width: 480px) {
+  #post {
+    width: 95%;
+  }
+  .sp__none {
+    display: none;
+  }
 }
 </style>

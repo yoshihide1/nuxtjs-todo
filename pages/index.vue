@@ -1,11 +1,14 @@
 <template>
   <div class="container">
     <div class="title">Todo-List</div>
-    <Posts />
-    <TaskCounts />
-    <SearchAndSort />
-    <Memos />
-    <EditModalWindow />
+    <div class="items">
+      <SearchAndSort />
+      <Posts />
+      <TaskCounts />
+      <Memos />
+      <EditModalWindow />
+      <DeleteButton />
+    </div>
   </div>
 </template>
 
@@ -15,6 +18,7 @@ import TaskCounts from '@/components/TaskCounts'
 import SearchAndSort from '@/components/SearchAndSort'
 import Memos from '@/components/Memos'
 import EditModalWindow from '@/components/EditModalWindow'
+import DeleteButton from '@/components/DeleteButton'
 export default {
   components: {
     Posts,
@@ -22,28 +26,34 @@ export default {
     SearchAndSort,
     Memos,
     EditModalWindow,
+    DeleteButton,
   },
 }
 </script>
 
 <style>
 html {
-  background-color: #494544;
+  background-color: #eaf6fd;
 }
 #__layout {
-  background-color: #494544;
-  color: #fff;
+  width: 100%;
+  background-color: #eaf6fd;
 }
 .container {
-  width: 100%;
   padding: 0;
-  margin: 0 auto;
+  margin: 0;
   text-align: center;
 }
 .title {
+  width: 100vw;
+  height: 65px;
+  background-color: #002a5b;
+  color: #eaf6fd;
   font-size: 2.3rem;
   font-style: italic;
-  border-bottom: 2px solid #c41a30;
-  margin-bottom: 1rem;
+  border-bottom: 5px solid #c41a30;
+}
+.items {
+  width: 100vw;
 }
 </style>

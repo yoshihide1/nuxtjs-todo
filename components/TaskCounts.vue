@@ -1,15 +1,15 @@
 <template>
   <div id="task__count">
-    <b-badge variant="success" class="task__count"
+    <b-badge variant="dark" class="task__count"
       ><span class="task__count__text">全体</span>{{ totalTask }}</b-badge
     >
-    <b-badge variant="success" class="task__count"
+    <b-badge variant="dark" class="task__count"
       ><span class="task__count__text">完了</span>{{ completeTask }}</b-badge
     >
-    <b-badge variant="success" class="task__count"
+    <b-badge variant="dark" class="task__count"
       ><span class="task__count__text">未完</span>{{ remainingTask }}</b-badge
     >
-    <b-badge variant="success" class="task__count">
+    <b-badge variant="dark" class="task__count">
       <span class="task__count__text">完了率</span>{{ completeRate
       }}<span>%</span>
     </b-badge>
@@ -75,6 +75,7 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
+  margin: 0.7rem 0;
 }
 .task__count {
   margin: 0 1rem;

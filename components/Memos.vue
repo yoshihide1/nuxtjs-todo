@@ -9,14 +9,10 @@
             @change="taskComplete(task.id)"
           />
         </p>
-        <details>
-          <summary>
-            <span :class="{ done: task.isDone }">
-              <!-- {{ lengthCheck(task.memo) }} -->
-              {{ task.memo }}
-            </span>
-          </summary>
-        </details>
+
+        <p :class="{ done: task.isDone }">
+          {{ task.memo }}
+        </p>
       </div>
       <div class="task__limit">
         <font-awesome-icon
@@ -24,8 +20,8 @@
           :icon="['fas', 'tools']"
           @click="editTask(task.id)"
         />
-        <small>期限{{ task.limit }}</small>
         <small>{{ getLimit(task.limit, task) }}</small>
+        <small>期限{{ task.limit }}</small>
         <small>{{ task.date }}</small>
         <font-awesome-icon
           class="delete__btn"
@@ -34,25 +30,11 @@
         />
       </div>
     </div>
-    <div>
-      <b-button
-        variant="outline-danger"
-        :disabled="deleteAllButton"
-        @click="deleteCompleted"
-        >完了<font-awesome-icon :icon="['fas', 'trash-alt']"
-      /></b-button>
-      <b-button
-        variant="outline-danger"
-        :disabled="deleteAllButton"
-        @click="deleteAll"
-        >全件<font-awesome-icon :icon="['fas', 'trash-alt']"
-      /></b-button>
-    </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
@@ -64,7 +46,6 @@ export default {
 
   computed: {
     ...mapState(['taskList', 'filterList']),
-    ...mapGetters(['deleteAllButton']),
   },
   watch: {
     taskList: {
@@ -74,6 +55,7 @@ export default {
       },
       deep: true,
     },
+
     filterList() {
       this.tasks = this.filterList
     },
@@ -112,11 +94,6 @@ export default {
       else return `残り${result}日`
     },
 
-    lengthCheck(memo) {
-      if (memo.length >= 15) return `${memo.slice(0, 15)}...`
-      else return memo
-    },
-
     editTask(taskId) {
       const index = this.$store.getters.findTaskIndex(taskId)
       this.$store.commit('modalOpen', index)
@@ -137,28 +114,15 @@ export default {
       const index = this.$store.getters.findTaskIndex(taskId)
       this.$store.commit('taskComplete', index)
     },
-
-    deleteCompleted() {
-      const res = confirm('完了済みタスクを全て削除しますか？ ※復元できません')
-      if (res) {
-        this.$store.dispatch('deleteCompletedTask')
-      }
-    },
-
-    deleteAll() {
-      const res = confirm('本当に消しますか？ ※復元できません')
-      if (res) {
-        localStorage.clear()
-        this.$store.commit('deleteAllTask')
-      }
-    },
   },
 }
 </script>
 
 <style>
 #tasks {
-  padding-bottom: 110px;
+  width: 90%;
+  padding-bottom: 10px;
+  margin: 0 auto;
 }
 .btn-outline-success {
   padding: 3px 10px;
@@ -178,7 +142,7 @@ export default {
 .check__box {
   margin-right: 0.6rem;
 }
-span.done {
+p.done {
   text-decoration: line-through;
 }
 .edit__btn {

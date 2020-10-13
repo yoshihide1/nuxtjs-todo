@@ -1,29 +1,27 @@
 <template>
   <div class="task__controller">
     <div>
-      <p>
-        <small>絞り込み</small>
-      </p>
-      <b-button variant="outline-success" @click="taskFiltering('all')"
-        >全て</b-button
-      >
-      <b-button variant="outline-success" @click="taskFiltering(true)"
-        >完了</b-button
-      >
-      <b-button variant="outline-success" @click="taskFiltering(false)"
-        >未完</b-button
-      >
+      <b-button-group class="search__btn">
+        <b-button variant="outline-dark" @click="taskFiltering('all')"
+          ><font-awesome-icon :icon="['fas', 'search']" />全て</b-button
+        >
+        <b-button variant="outline-dark" @click="taskFiltering(true)"
+          >完了</b-button
+        >
+        <b-button variant="outline-dark" @click="taskFiltering(false)"
+          >未完</b-button
+        >
+      </b-button-group>
     </div>
     <div>
-      <p>
-        <small>ソート</small>
-      </p>
-      <b-button variant="outline-success" class="" @click="taskSort('limit')"
-        >期限</b-button
-      >
-      <b-button variant="outline-success" @click="taskSort('date')"
-        >作成.更新</b-button
-      >
+      <b-button-group class="sort__btn">
+        <b-button variant="outline-dark" class="" @click="taskSort('limit')"
+          ><font-awesome-icon :icon="['fas', 'arrows-alt-v']" /> 期限
+        </b-button>
+        <b-button variant="outline-dark" @click="taskSort('date')"
+          >作成
+        </b-button>
+      </b-button-group>
     </div>
   </div>
 </template>
@@ -64,9 +62,10 @@ export default {
 
 <style scoped>
 .task__controller {
+  width: 90%;
   display: flex;
   justify-content: space-between;
-  margin: 0.7rem 0;
+  margin: 0.7rem auto;
 }
 .task__controller p {
   margin: 0;

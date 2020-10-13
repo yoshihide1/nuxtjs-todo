@@ -12,11 +12,11 @@
         </p>
         <p>
           <span class="edit__limit">期限</span
-          ><input v-model="editTask.limit" type="date" />
+          ><input v-model="editTask.limit" class="input__date" type="date" />
         </p>
         <div class="edit__btn">
-          <b-button variant="outline-warning" @click="saveTask">保存</b-button>
-          <b-button variant="outline-warning" @click="modalClose"
+          <b-button variant="outline-light" @click="saveTask">保存</b-button>
+          <b-button variant="outline-light" @click="modalClose"
             >キャンセル</b-button
           >
         </div>
@@ -76,7 +76,7 @@ export default {
   transform: translate(-50%, -50%);
   width: 60%;
   height: 70%;
-  background-color: #150c15;
+  background-color: #002a5b;
   z-index: 3;
 }
 .close__btn {
@@ -89,7 +89,7 @@ export default {
   margin: 10px 10px 0 0;
   line-height: 50px;
   text-align: center;
-  color: #917c50;
+  color: #eaf6fd;
   cursor: pointer;
 }
 .modal__back_color {
@@ -98,7 +98,7 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.8);
   z-index: 1;
   cursor: pointer;
 }
@@ -106,9 +106,17 @@ export default {
   margin-top: 70px;
   width: 90%;
   border-radius: 5px;
+  border: 2px solid #d7000f;
+  background-color: #eaf6fd;
 }
+
+.input__date {
+  background-color: #eaf6fd;
+  border: 2px solid #d7000f;
+}
+
 .edit__limit {
-  color: #fff;
+  color: #eaf6fd;
   margin-right: 0.5rem;
 }
 
@@ -117,7 +125,7 @@ export default {
     width: 90%;
   }
   .edit__btn {
-    margin: 5rem;
+    margin-top: 4rem;
   }
 }
 </style>
