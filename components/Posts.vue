@@ -21,6 +21,7 @@
         class="memo__form"
         type="text"
         placeholder="タスクの追加"
+        @keydown.enter="addTask"
       />
     </div>
   </div>
@@ -79,7 +80,6 @@ export default {
   bottom: 0;
   left: 0;
   background-color: #494544;
-  border-top: 2px solid #bac8c6;
 }
 .date__form {
   display: flex;

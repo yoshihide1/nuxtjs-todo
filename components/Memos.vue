@@ -12,10 +12,10 @@
         <details>
           <summary>
             <span :class="{ done: task.isDone }">
-              {{ lengthCheck(task.memo) }}
+              <!-- {{ lengthCheck(task.memo) }} -->
+              {{ task.memo }}
             </span>
           </summary>
-          <p>{{ task.memo }}</p>
         </details>
       </div>
       <div class="task__limit">
