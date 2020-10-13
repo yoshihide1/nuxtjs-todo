@@ -27,8 +27,10 @@ export default {
 </script>
 
 <style>
+html {
+  background-color: #494544;
+}
 #__layout {
-  height: 100vh;
   background-color: #494544;
   color: #fff;
 }

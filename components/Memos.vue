@@ -35,7 +35,10 @@
       </div>
     </div>
     <div>
-      <b-button variant="outline-danger" @click="deleteCompleted"
+      <b-button
+        variant="outline-danger"
+        :disabled="deleteAllButton"
+        @click="deleteCompleted"
         >完了<font-awesome-icon :icon="['fas', 'trash-alt']"
       /></b-button>
       <b-button
@@ -77,7 +80,9 @@ export default {
   },
 
   mounted() {
-    this.init()
+    if (localStorage.getItem('ToDoList')) {
+      this.init()
+    }
   },
 
   methods: {

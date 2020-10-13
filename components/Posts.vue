@@ -95,6 +95,7 @@ export default {
   background-color: #494544;
   border: 0 solid;
   border-bottom: 5px solid #bac8c6;
+  color: #fff;
 }
 .memo__date {
   border: 1px solid #bac8c6;
