@@ -1,44 +1,5 @@
 <template>
   <div id="tasks">
-    <div class="task__controller">
-      <div>
-        <p>
-          <small>絞り込み</small>
-        </p>
-        <b-button
-          variant="outline-success"
-          class=""
-          @click="taskFiltering('all')"
-          >全て</b-button
-        >
-        <b-button
-          variant="outline-success"
-          class=""
-          @click="taskFiltering(true)"
-          >完了</b-button
-        >
-        <b-button
-          variant="outline-success"
-          class=""
-          @click="taskFiltering(false)"
-          >未完</b-button
-        >
-      </div>
-      <div>
-        <p>
-          <small>ソート</small>
-        </p>
-        <b-button variant="outline-success" class="" @click="taskSort('limit')"
-          >期限</b-button
-        >
-        <b-button
-          variant="outline-success"
-          class=""
-          @click="taskSort('created')"
-          >作成.更新</b-button
-        >
-      </div>
-    </div>
     <div v-for="task in tasks" :key="task.id" class="tasks">
       <div class="task__list">
         <p class="check__box">
@@ -95,12 +56,11 @@ export default {
       complete: false,
       tasks: [],
       timeLimit: 0,
-      sortFacing: 'desc',
     }
   },
 
   computed: {
-    ...mapState(['taskList']),
+    ...mapState(['taskList', 'filterList']),
     ...mapGetters(['deleteAllButton']),
   },
   watch: {
@@ -110,6 +70,9 @@ export default {
         this.localData()
       },
       deep: true,
+    },
+    filterList() {
+      this.tasks = this.filterList
     },
   },
 
@@ -184,30 +147,13 @@ export default {
         this.$store.commit('deleteAllTask')
       }
     },
-    taskFiltering(boolean) {
-      if (boolean === 'all') {
-        this.tasks = this.taskList
-      } else {
-        this.tasks = this.$store.getters.filtering(boolean)
-      }
-    },
-
-    taskSort(target) {
-      if (this.sortFacing === 'desc') {
-        this.sortFacing = 'asc'
-        this.$store.commit('taskSortAsc', target)
-      } else {
-        this.sortFacing = 'desc'
-        this.$store.commit('taskSortDesc', target)
-      }
-    },
   },
 }
 </script>
 
 <style>
 #tasks {
-  padding-bottom: 90px;
+  padding-bottom: 110px;
 }
 .btn-outline-success {
   padding: 3px 10px;
@@ -216,13 +162,6 @@ export default {
   border-bottom: 3px solid #c41a30;
   margin-bottom: 1rem;
   padding: 0 5px;
-}
-.task__controller {
-  display: flex;
-  justify-content: space-between;
-}
-.task__controller p {
-  margin: 0;
 }
 .task__list {
   display: flex;

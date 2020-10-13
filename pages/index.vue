@@ -3,6 +3,7 @@
     <div class="title">Todo-List</div>
     <Posts />
     <TaskCounts />
+    <SearchAndSort />
     <Memos />
     <EditModalWindow />
   </div>
@@ -11,12 +12,14 @@
 <script>
 import Posts from '@/components/Posts'
 import TaskCounts from '@/components/TaskCounts'
+import SearchAndSort from '@/components/SearchAndSort'
 import Memos from '@/components/Memos'
 import EditModalWindow from '@/components/EditModalWindow'
 export default {
   components: {
     Posts,
     TaskCounts,
+    SearchAndSort,
     Memos,
     EditModalWindow,
   },
@@ -25,6 +28,7 @@ export default {
 
 <style>
 #__layout {
+  height: 100vh;
   background-color: #494544;
   color: #fff;
 }

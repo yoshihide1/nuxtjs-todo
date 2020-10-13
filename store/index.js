@@ -4,6 +4,7 @@ export const state = () => ({
   taskList: [],
   task: {},
   showModal: false,
+  filterList: [],
 })
 
 export const mutations = {
@@ -37,18 +38,26 @@ export const mutations = {
 
   taskSortAsc(state, target) {
     state.taskList.sort((a, b) => {
-      if (a[target] < b[target]) return -1
-      if (a[target] > b[target]) return 1
+      const num1 = a[target].replace(/\D/g, '')
+      const num2 = b[target].replace(/\D/g, '')
+      if (num1 < num2) return -1
+      if (num1 > num2) return 1
       return 0
     })
   },
 
   taskSortDesc(state, target) {
     state.taskList.sort((a, b) => {
-      if (a[target] > b[target]) return -1
-      if (a[target] < b[target]) return 1
+      const num1 = a[target].replace(/\D/g, '')
+      const num2 = b[target].replace(/\D/g, '')
+      if (num1 > num2) return -1
+      if (num1 < num2) return 1
       return 0
     })
+  },
+
+  filtering(state, filterList) {
+    state.filterList = filterList
   },
 
   modalOpen(state, index) {
