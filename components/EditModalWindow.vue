@@ -114,6 +114,12 @@ export default {
   background-color: #eaf6fd;
   border: 2px solid #d7000f;
 }
+
+.input__date {
+  background-color: #eaf6fd;
+  border: 2px solid #d7000f;
+}
+
 .edit__limit {
   color: #eaf6fd;
   margin-right: 0.5rem;
