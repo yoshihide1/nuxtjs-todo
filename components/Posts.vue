@@ -51,6 +51,7 @@ export default {
         memo: this.taskMemo,
         limit: this.dateFormat(this.timeLimit),
       })
+      this.$toast.show('追加しました')
       this.taskMemo = ''
     },
 

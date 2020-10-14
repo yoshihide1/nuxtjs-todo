@@ -44,8 +44,16 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     'nuxt-fontawesome',
+    '@nuxtjs/toast',
     '@nuxtjs/pwa',
   ],
+
+  toast: {
+    position: 'top-center',
+    duration: 2000,
+    singleton: true,
+    closeOnSwipe: true,
+  },
 
   bootstrapVue: {
     bootstrapCSS: false,

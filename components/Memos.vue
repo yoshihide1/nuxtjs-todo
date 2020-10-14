@@ -100,6 +100,7 @@ export default {
 
     deleteTask(taskId) {
       this.$store.dispatch('deleteTask', taskId)
+      this.$toast.error('削除しました')
     },
 
     localData() {
