@@ -44,14 +44,24 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     'nuxt-fontawesome',
+    '@nuxtjs/onesignal',
     '@nuxtjs/pwa',
   ],
 
-  bootstrapVue: {
-    bootstrapCSS: false,
-    bootstrapVueCSS: false,
-  },
+  oneSignal: {
+    init: {
+      appId: '77085c7f-d0eb-4078-895a-10e47c92cfd8',
+      allowLocalhostAsSecureOrigin: true,
+      welcomeNotification: {
+        disable: true,
+      },
+    },
 
+    bootstrapVue: {
+      bootstrapCSS: false,
+      bootstrapVueCSS: false,
+    },
+  },
   styleResources: {
     scss: ['@/assets/style/_variables.scss'],
   },
