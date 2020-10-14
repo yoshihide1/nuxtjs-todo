@@ -44,23 +44,12 @@ export default {
     '@nuxtjs/dotenv',
     '@nuxtjs/axios',
     'nuxt-fontawesome',
-    '@nuxtjs/onesignal',
     '@nuxtjs/pwa',
   ],
 
-  oneSignal: {
-    init: {
-      appId: process.env.ONE_SIGNAL,
-      allowLocalhostAsSecureOrigin: true,
-      welcomeNotification: {
-        disable: true,
-      },
-    },
-
-    bootstrapVue: {
-      bootstrapCSS: false,
-      bootstrapVueCSS: false,
-    },
+  bootstrapVue: {
+    bootstrapCSS: false,
+    bootstrapVueCSS: false,
   },
   styleResources: {
     scss: ['@/assets/style/_variables.scss'],
