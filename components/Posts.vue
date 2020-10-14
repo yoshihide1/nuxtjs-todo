@@ -102,7 +102,6 @@ export default {
   margin-top: 10px;
   background-color: #eaf6fd;
   border: 2px solid #d7000f;
-  color: #fff;
 }
 .memo__date {
   border: 1px solid #002a5b;

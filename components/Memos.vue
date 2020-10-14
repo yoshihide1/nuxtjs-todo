@@ -9,7 +9,6 @@
             @change="taskComplete(task.id)"
           />
         </p>
-
         <p :class="{ done: task.isDone }">
           {{ task.memo }}
         </p>
