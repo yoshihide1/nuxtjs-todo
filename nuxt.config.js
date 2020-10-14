@@ -44,6 +44,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     'nuxt-fontawesome',
+    '@nuxtjs/pwa',
   ],
 
   bootstrapVue: {
@@ -68,4 +69,9 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
+
+  manifest: {
+    name: 'Todo',
+    lang: 'ja',
+  },
 }
