@@ -44,8 +44,16 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     'nuxt-fontawesome',
+    '@nuxtjs/toast',
     '@nuxtjs/pwa',
   ],
+
+  toast: {
+    position: 'top-center',
+    duration: 2000,
+    singleton: true,
+    closeOnSwipe: true,
+  },
 
   bootstrapVue: {
     bootstrapCSS: false,
@@ -72,6 +80,9 @@ export default {
 
   manifest: {
     name: 'Todo',
+    short_name: 'Todo',
+    title: 'Todo',
     lang: 'ja',
+    'og:title': 'Todo',
   },
 }

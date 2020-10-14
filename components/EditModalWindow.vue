@@ -46,6 +46,7 @@ export default {
   methods: {
     saveTask() {
       this.$store.dispatch('updateTask', this.editTask)
+      this.$toast.show('変更を保存しました')
       this.modalClose()
     },
     modalClose() {

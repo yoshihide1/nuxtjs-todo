@@ -28,6 +28,7 @@ export default {
       const res = confirm('完了済みタスクを全て削除しますか？ ※復元できません')
       if (res) {
         this.$store.dispatch('deleteCompletedTask')
+        this.$toast.error('完了済みタスクを削除しました')
       }
     },
 
@@ -36,6 +37,7 @@ export default {
       if (res) {
         localStorage.clear()
         this.$store.commit('deleteAllTask')
+        this.$toast.error('全件削除しました')
       }
     },
   },
