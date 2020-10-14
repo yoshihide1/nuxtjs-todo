@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div class="title">Todo-List</div>
+
     <div class="items">
       <SearchAndSort />
       <Posts />
