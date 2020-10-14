@@ -6,7 +6,6 @@ const routerBase =
         },
       }
     : {}
-
 export default {
   ...routerBase,
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
@@ -42,6 +41,7 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
+    '@nuxtjs/dotenv',
     '@nuxtjs/axios',
     'nuxt-fontawesome',
     '@nuxtjs/onesignal',
@@ -50,7 +50,7 @@ export default {
 
   oneSignal: {
     init: {
-      appId: 'e94e32da-96ac-4fa6-a0c2-7a4f2b852e4f',
+      appId: process.env.ONE_SIGNAL,
       allowLocalhostAsSecureOrigin: true,
       welcomeNotification: {
         disable: true,
