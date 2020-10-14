@@ -77,7 +77,7 @@ export default {
   width: 60%;
   height: 70%;
   background-color: #002a5b;
-  z-index: 3;
+  z-index: 15;
 }
 .close__btn {
   position: absolute;
@@ -99,7 +99,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.8);
-  z-index: 1;
+  z-index: 10;
   cursor: pointer;
 }
 .edit__text {
@@ -114,7 +114,6 @@ export default {
   background-color: #eaf6fd;
   border: 2px solid #d7000f;
 }
-
 .edit__limit {
   color: #eaf6fd;
   margin-right: 0.5rem;

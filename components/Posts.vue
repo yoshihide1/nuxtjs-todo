@@ -121,7 +121,12 @@ export default {
 
 @media screen and (max-width: 480px) {
   #post {
-    width: 95%;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0;
+    border-radius: 0;
+    z-index: 1;
   }
   .sp__none {
     display: none;

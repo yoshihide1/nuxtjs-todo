@@ -5,9 +5,11 @@
       <SearchAndSort />
       <Posts />
       <TaskCounts />
-      <Memos />
+      <div class="item__task">
+        <Memos />
+        <DeleteButton />
+      </div>
       <EditModalWindow />
-      <DeleteButton />
     </div>
   </div>
 </template>
@@ -55,5 +57,11 @@ html {
 }
 .items {
   width: 100vw;
+}
+
+@media screen and (max-width: 480px) {
+  .item__task {
+    margin-bottom: 120px;
+  }
 }
 </style>
