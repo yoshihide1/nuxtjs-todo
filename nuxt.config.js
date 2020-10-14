@@ -72,6 +72,7 @@ export default {
 
   manifest: {
     name: 'Todo',
+    short_name: 'Todo',
     lang: 'ja',
   },
 }
