@@ -73,6 +73,8 @@ export default {
   manifest: {
     name: 'Todo',
     short_name: 'Todo',
+    title: 'Todo',
     lang: 'ja',
+    'og:title': 'Todo',
   },
 }
