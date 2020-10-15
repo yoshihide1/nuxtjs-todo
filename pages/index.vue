@@ -31,6 +31,24 @@ export default {
     EditModalWindow,
     DeleteButton,
   },
+  created() {
+    console.log(1)
+    if ('serviceWorker' in navigator) {
+      console.log(2)
+      navigator.serviceWorker
+        .register('/serviceworker.js')
+        .then((registration) => {
+          // 登録成功
+          registration.onupdatefound = function () {
+            console.log('アップデートがあります！')
+            registration.update()
+          }
+        })
+        .catch((err) => {
+          console.log('error', err)
+        })
+    }
+  },
 }
 </script>
 
